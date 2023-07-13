@@ -1,0 +1,44 @@
+.login_image {
+
+    background: var(--unnamed-color-286fd1) 0% 0% no-repeat padding-box;
+    background: #C9DBF3 0% 0% no-repeat padding-box;
+
+}
+
+.image {
+    padding-top: 17vh !important;
+    pointer-events: none !important;
+}
+
+.custom-register-form {
+    width: 740px !important;
+}
+
+
+svg {
+    vertical-align: initial !important;
+}
+
+.belowBtn {
+    height: 36px !important;
+}
+
+@media only screen and (max-width: 445px) {
+    .belowBtn {
+        width: 100%;
+    }
+
+    .marginTop {
+        margin-top: 19px !important
+    }
+}
+
+@media only screen and (max-width: 884px) {
+    .belowBtn {
+        width: 100%;
+    }
+
+    .marginTop {
+        margin-top: 19px !important
+    }
+}

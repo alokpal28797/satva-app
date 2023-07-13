@@ -1,0 +1,7 @@
+.layout{
+    height: calc(100vh - 64px);
+}
+.sidebar{
+    overflow-x: auto !important;
+    padding-left: 2vw !important;
+}
