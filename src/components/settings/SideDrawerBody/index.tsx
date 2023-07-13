@@ -3,10 +3,11 @@ import { Button, Col, Form, Input, Row } from "antd";
 import { SideDrawerBodyProps } from "./types";
 import { userDrawerBody } from "../../../constants/Data";
 import { toastText } from "../../../Utils/utils";
+import './index.css'
 
 const SideDrawerBody = (props: any) => {
   const { userFields, organizationFields } = userDrawerBody;
-  const { title , close } = props;
+  const { title, close } = props;
   console.log("🚀 ~ file: index.tsx:10 ~ SideDrawerBody ~ Title:", title)
 
   // If form get success
@@ -21,7 +22,7 @@ const SideDrawerBody = (props: any) => {
     console.log("Failed:", errorInfo);
   };
   return (
-    <div>
+    <>
       {title === 'users' && (
         <Form
           name="basic"
@@ -32,34 +33,34 @@ const SideDrawerBody = (props: any) => {
           layout="vertical"
           labelAlign="left"
         >
-          <div>
-            <Row gutter={[16, 16]}>
-              {userFields.map((singleField, index) => (
-                <Col span={12} key={index}>
-                  <div>
-                    <label>{singleField.title} *</label>
-                    <Form.Item
-                      name={singleField.name}
-                      rules={[
-                        {
-                          required: true,
-                          message: singleField.errorMessage,
-                        },
-                      ]}
-                    >
-                      <Input
-                        placeholder={singleField.placeholder}
-                        size="large"
-                        type={singleField.type}
-                      />
-                    </Form.Item>
-                  </div>
-                </Col>
-              ))}
-            </Row>
-          </div>
-          <div style={{ marginTop: '55%' }}>
-            <Form.Item style={{ marginBottom: 0 }}>
+
+          <Row gutter={[16, 16]}>
+            {userFields.map((singleField, index) => (
+              <Col span={12} key={index}>
+                <div>
+                  <label>{singleField.title} *</label>
+                  <Form.Item
+                    name={singleField.name}
+                    rules={[
+                      {
+                        required: true,
+                        message: singleField.errorMessage,
+                      },
+                    ]}
+                  >
+                    <Input
+                      placeholder={singleField.placeholder}
+                      size="large"
+                      type={singleField.type}
+                    />
+                  </Form.Item>
+                </div>
+              </Col>
+            ))}
+          </Row>
+
+          <div className="saveCancelBtnDiv">
+            <Form.Item >
               <Button type="primary" htmlType="submit" style={{ marginRight: 8, backgroundColor: '#286FD1', width: '86px' }}>
                 Save
               </Button>
@@ -80,56 +81,54 @@ const SideDrawerBody = (props: any) => {
           layout="vertical"
           labelAlign="left"
         >
-          <div>
-            <Row gutter={[16, 16]}>
-              {/* First Component */}
-              <Col span={24}>
+          <Row gutter={[16, 16]}>
+            {/* First Component */}
+            <Col span={24}>
+              <div>
+                <label>{organizationFields[0].title} *</label>
+                <Form.Item
+                  name={organizationFields[0].name}
+                  rules={[
+                    {
+                      required: true,
+                      message: organizationFields[0].errorMessage,
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder={organizationFields[0].placeholder}
+                    size="large"
+                    type={organizationFields[0].type}
+                  />
+                </Form.Item>
+              </div>
+            </Col>
+
+            {/* Remaining Components */}
+            {organizationFields.slice(1).map((singleField, index) => (
+              <Col span={12} key={index}>
                 <div>
-                  <label>{organizationFields[0].title} *</label>
+                  <label>{singleField.title} *</label>
                   <Form.Item
-                    name={organizationFields[0].name}
+                    name={singleField.name}
                     rules={[
                       {
                         required: true,
-                        message: organizationFields[0].errorMessage,
+                        message: singleField.errorMessage,
                       },
                     ]}
                   >
                     <Input
-                      placeholder={organizationFields[0].placeholder}
+                      placeholder={singleField.placeholder}
                       size="large"
-                      type={organizationFields[0].type}
+                      type={singleField.type}
                     />
                   </Form.Item>
                 </div>
               </Col>
-
-              {/* Remaining Components */}
-              {organizationFields.slice(1).map((singleField, index) => (
-                <Col span={12} key={index}>
-                  <div>
-                    <label>{singleField.title} *</label>
-                    <Form.Item
-                      name={singleField.name}
-                      rules={[
-                        {
-                          required: true,
-                          message: singleField.errorMessage,
-                        },
-                      ]}
-                    >
-                      <Input
-                        placeholder={singleField.placeholder}
-                        size="large"
-                        type={singleField.type}
-                      />
-                    </Form.Item>
-                  </div>
-                </Col>
-              ))}
-            </Row>
-          </div>
-          <div style={{ marginTop: '55%' }}>
+            ))}
+          </Row>
+          <div className="saveCancelBtnDiv">
             <Form.Item style={{ marginBottom: 0 }}>
               <Button type="primary" htmlType="submit" style={{ marginRight: 8, backgroundColor: '#286FD1', width: '86px' }}>
                 Save
@@ -142,7 +141,7 @@ const SideDrawerBody = (props: any) => {
         </Form>)}
 
       {title === 'roles' && (
-      <Form
+        <Form
           name="basic"
           initialValues={{ remember: true }}
           onFinish={onFinish}
@@ -151,10 +150,8 @@ const SideDrawerBody = (props: any) => {
           layout="vertical"
           labelAlign="left"
         >
-          <div>
-            
-          </div>
-          <div style={{ marginTop: '55%' }}>
+
+          <div className="saveCancelBtnDiv">
             <Form.Item style={{ marginBottom: 0 }}>
               <Button type="primary" htmlType="submit" style={{ marginRight: 8, backgroundColor: '#286FD1', width: '86px' }}>
                 Save
@@ -165,7 +162,7 @@ const SideDrawerBody = (props: any) => {
             </Form.Item>
           </div>
         </Form>)}
-    </div>
+    </>
   );
 };
 

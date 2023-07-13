@@ -1,7 +1,5 @@
 import { UserOutlined, MailOutlined, PhoneOutlined, LockOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Space } from "antd";
-import imgQuickBook from "../assets/images/Connection/Intuit_QuickBooks_logo.png"
-
+import { Switch } from 'antd';
 
 export const registerFormData = [
   {
@@ -202,55 +200,56 @@ export const logInFormData = [
 
 export const userDataSource = [
   {
-      // key: '1',
-      name: 'Mike',
-      email: 'mike@getMaxListeners.com',
-      phone: 67767767676,
-      status: 'active',
-      created: `some date`,
-    
+    // key: '1',
+    id: 1,
+    name: 'Mike',
+    email: 'mike@getMaxListeners.com',
+    phone: 67767767676,
+    status: 'enable',
+    created: `some date`,
+
   },
   {
-     
-      name: 'Aike',
-      email: 'mike@getMaxListeners.com',
-      phone: 67767767676,
-      status: 'active',
-      created: `some date`,
-   
+    id: 2,
+    name: 'Aike',
+    email: 'mike@getMaxListeners.com',
+    phone: 67767767676,
+    status: 'enable',
+    created: `some date`,
+
   },
   {
-     
-      name: 'ssike',
-      email: 'mike@getMaxListeners.com',
-      phone: 67767767676,
-      status: 'active',
-      created: `some date`,
-     
+    id: 3,
+    name: 'ssike',
+    email: 'mike@getMaxListeners.com',
+    phone: 67767767676,
+    status: 'enable',
+    created: `some date`,
+
   }, {
-     
-      name: 'fike',
-      email: 'mike@getMaxListeners.com',
-      phone: 67767767676,
-      status: 'active',
-      created: `some date`,
-   
+    id: 4,
+    name: 'fike',
+    email: 'mike@getMaxListeners.com',
+    phone: 67767767676,
+    status: 'enable',
+    created: `some date`,
+
   }, {
-     
-      name: 'dike',
-      email: 'mike@getMaxListeners.com',
-      phone: 67767767676,
-      status: 'active',
-      created: `some date`,
-     
+    id: 5,
+    name: 'dike',
+    email: 'mike@getMaxListeners.com',
+    phone: 67767767676,
+    status: 'enable',
+    created: `some date`,
+
   }, {
-     
-      name: 'tike',
-      email: 'mike@getMaxListeners.com',
-      phone: 67767767676,
-      status: 'active',
-      created: `some date`,
-     
+    id: 6,
+    name: 'tike',
+    email: 'mike@getMaxListeners.com',
+    phone: 67767767676,
+    status: 'enable',
+    created: `some date`,
+
   },
 ];
 
@@ -382,3 +381,16 @@ export const userDrawerBody = {
     }
   ]
 }
+
+
+
+export const subscriptionCard = [
+  {
+    title: 'Plan Details',
+    manageSubscription: 'Manage Subscription',
+    plan: 'Current Plan',
+    pricing: `$199/ month`,
+    logo: '/assets/Gold/Gold-v2.png',
+    ghost: false,
+  }
+]

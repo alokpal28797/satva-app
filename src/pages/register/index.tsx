@@ -141,7 +141,7 @@ const Register = () => {
 
                     <Form.Item>
                       <Button
-                        className="mt-4"
+                        className="mt-3"
                         type="primary"
                         htmlType="submit"
                         block={true}
@@ -173,7 +173,7 @@ const Register = () => {
                     <Form.Item
                       name="remember"
                       valuePropName="checked"
-                      className="mt-5"
+                      style={{marginTop : '3.5%'}}
                       // wrapperCol={{ offset: 8, span: 16 }}
                     >
                       <Typography>

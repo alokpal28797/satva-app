@@ -6,14 +6,16 @@ import { Col, Drawer, Row } from 'antd';
 import SideDrawerBody from '../../components/settings/SideDrawerBody';
 import { CloseOutlined } from '@ant-design/icons';
 import DynamicTable from '../../components/settings/Table';
-import { integrationsCards, userDataSource } from '../../constants/Data';
+import { integrationsCards, subscriptionCard, userDataSource } from '../../constants/Data';
 import ConfirmDelete from '../../components/global/DeleteModal';
 import IntegrationCard from '../../components/settings/IntegrationCard';
+import SubscriptionCard from '../../components/settings/SubscriptionCard';
 
 const Settings = () => {
 
     const [isSideDrawerOpen, setSideDrawerOpen] = useState(false);
     const [settingComponent, setSettingComponent] = useState('users');
+    console.log("🚀 ~ file: index.tsx:17 ~ Settings ~ settingComponent:", settingComponent)
 
     //  use to toggle Global Modal
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -59,7 +61,7 @@ const Settings = () => {
     const onClose = () => {
         setSideDrawerOpen(false);
     };
-    console.log("🚀 ~ file: index.tsx:8 ~ Settings ~ isSideDrawerOpen:", isSideDrawerOpen)
+    // // // // // // // // // // // // // // // console.log("🚀 ~ file: index.tsx:8 ~ Settings ~ isSideDrawerOpen:", isSideDrawerOpen)
 
     // To capitalize the first letter of the title
     function capitalizeFirstWord(str: any) {
@@ -101,6 +103,37 @@ const Settings = () => {
                                             <IntegrationCard
                                                 title={card?.title}
                                                 buttonText={card?.buttonText}
+                                                logo={card?.logo}
+                                                ghost={card?.ghost}
+                                            />
+                                        </Col>
+                                    );
+                                })}
+                            </Row>
+                        </div>
+                    )}
+                    {settingComponent === 'subscription' && (
+                        <div
+                            className='ps-4'
+                            style={{ width: '98%' }}
+                        >
+                            <Row gutter={16} >
+                                {subscriptionCard?.map((card, index) => {
+                                    return (
+                                        <Col
+                                            key={index}
+                                            className="gutter-row"
+                                            xl={10}
+                                            lg={10}
+                                            md={24}
+                                            sm={24}
+                                            xs={24}
+                                        >
+                                            <SubscriptionCard
+                                                title={card?.title}
+                                                manageSubscription = {card?.manageSubscription}
+                                                plan = {card?.plan}
+                                                pricing = {card?.pricing}
                                                 logo={card?.logo}
                                                 ghost={card?.ghost}
                                             />

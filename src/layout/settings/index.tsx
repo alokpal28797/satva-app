@@ -15,7 +15,7 @@ const Settings = (props: any) => {
         <div    >
           <SideBar handleSidebar={handleSidebar}  />
         </div>
-        <div style={{width:"100%"}}>{children}</div>
+        <div className='ps-3' style={{maxWidth : '83vw', width: '100%'}}>{children}</div>
       </Layout>
     </>
   );
