@@ -1,3 +1,13 @@
-.ant-switch-checked{
+.ant-switch-checked {
     background-color: green !important;
+}
+
+.ant-alert-success {
+    background-color: white !important;
+    border: none !important;
+}
+
+.ant-alert-error {
+    background-color: white !important;
+    border: none !important;
 }

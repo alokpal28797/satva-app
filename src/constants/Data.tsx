@@ -290,13 +290,14 @@ for (let i = 0; i < 20; i++) {
     organizationName: `Zydus ${i + 1}`,
     email: 'Zydus@Zydus.com',
     phone: 67767767676,
-    created: Date.now(),
-    status: 'active',
+    created: Date.now().toString(),
+    status: 'Inactive',
 
   })
 }
 export { organizationData }
 
+const rolesData: any = []
 
 export const integrationsCards = [
   {
