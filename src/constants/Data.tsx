@@ -1,4 +1,6 @@
-import { UserOutlined, MailOutlined, PhoneOutlined, LockOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { UserOutlined, MailOutlined, PhoneOutlined, LockOutlined, EditOutlined, DeleteOutlined, AlignLeftOutlined } from "@ant-design/icons";
+import { Checkbox } from "antd";
+import React from "react";
 
 
 export const registerFormData = [
@@ -198,6 +200,7 @@ export const logInFormData = [
 
 
 // Table const
+// user Table
 export const userDataSource = [
   {
     id: 1,
@@ -283,10 +286,11 @@ export const userDataSource = [
   },
 ];
 
+// organization Table
 const organizationData: any = []
 for (let i = 0; i < 20; i++) {
   organizationData.push({
-    id: 1,
+    id: i + 1,
     organizationName: `Zydus ${i + 1}`,
     email: 'Zydus@Zydus.com',
     phone: 67767767676,
@@ -297,8 +301,21 @@ for (let i = 0; i < 20; i++) {
 }
 export { organizationData }
 
+// roles Table
 const rolesData: any = []
 
+for (let i = 0; i < 20; i++) {
+  rolesData.push({
+    id: i + 1,
+    name: `Admin ${i + 1}`,
+    description: 'lorem ipsum granted',
+    status: 'Active',
+
+  })
+}
+export { rolesData }
+
+// Integration
 export const integrationsCards = [
   {
     title: 'Connect With Quickbooks Online',
@@ -424,9 +441,66 @@ export const userDrawerBody = {
       errorMessage: 'Please enter the phone number',
       placeholder: 'Enter your phone number',
     }
-  ]
+  ],
+
+  rolesFields: [
+    {
+      title: 'Role Name',
+      id: 'roleName',
+      type: 'text',
+      name: 'roleName',
+      defaultValue: '',
+      errorMessage: 'Please enter the role name',
+      placeholder: 'Enter your role Name',
+    },
+    {
+      title: 'Description',
+      id: 'description',
+      type: 'text',
+      name: 'description',
+      defaultValue: '',
+      errorMessage: 'Please enter the description ',
+      placeholder: 'Enter your description ',
+    }
+
+  ],
+
+
+
+
 }
 
+export const PermissionData: any = [
+  {
+    moduleName: `Admin`,
+    all: ``,
+    view: ``,
+    edit: ``,
+    delete: ``
+  }
+  , {
+    moduleName: `User`,
+    all: ``,
+    view: ``,
+    edit: ``,
+    delete: ``
+  },
+  {
+    moduleName: `Organization`,
+    all: ``,
+    view: ``,
+    edit: ``,
+    delete: ``
+  },
+  {
+    moduleName: `Roles`,
+    all: ``,
+    view: ``,
+    edit: ``,
+    delete: ``
+  }
+
+]
 
 
 export const subscriptionCard = [

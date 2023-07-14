@@ -11,3 +11,8 @@
     background-color: white !important;
     border: none !important;
 }
+
+.rolesPermission {
+    color: #4985D8;
+    cursor: pointer;
+}
