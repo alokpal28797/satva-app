@@ -3,13 +3,13 @@ import { Alert, Space, Switch, Table } from 'antd';
 import Column from 'antd/es/table/Column';
 import './index.css';
 import { useState } from 'react';
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { AlignLeftOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 
 const DynamicTable = (props: any) => {
-  const { userDataSource, showModal, title, organizationData } = props;
+  const { userDataSource, showModal, title, organizationData, rolesData, openDrawerHandler, permissionHandler } = props;
   const [enabled, setEnabled] = useState(userDataSource);
 
-  console.log(enabled);
+
   const onToggle = (checked: boolean, index: any) => {
     const data = enabled.map((item: any, ind: any) => {
       if (checked == true && index === ind) {
@@ -24,7 +24,15 @@ const DynamicTable = (props: any) => {
 
     setEnabled(data);
   };
-  console.log(enabled);
+
+  // permission click handler
+  const permissionClick = () => {
+    permissionHandler()
+    openDrawerHandler()
+  }
+
+
+
 
   const userColumn = [
     {
@@ -80,11 +88,6 @@ const DynamicTable = (props: any) => {
         );
       },
     },
-    // {
-    //     title: 'Created on',
-    //     dataIndex: 'created',
-    //     key: 'created',
-    // },
     {
       title: 'Action',
       dataIndex: 'action',
@@ -157,6 +160,63 @@ const DynamicTable = (props: any) => {
     },
   ];
 
+  const rolesColumn = [
+    {
+      title: 'Role Name',
+      dataIndex: 'name',
+      key: 'organizationName',
+      sorter: (a: any, b: any) => {
+        return a.name.length - b.name.length;
+      },
+    },
+    {
+      title: 'Description',
+      dataIndex: 'description',
+      key: 'description',
+    },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+      render: (status: any, record: any, index: any) => {
+        console.log(
+          '🚀 ~ file: index.tsx:113 ~ DynamicTable ~ status:',
+          status
+        );
+        if (status === 'active') {
+          return <Alert message="Active" type="success" showIcon />;
+        } else {
+          return <Alert message="Inactive" type="error" showIcon />;
+        }
+      },
+    },
+    {
+      title: 'Permissions',
+      dataIndex: 'permissions',
+      key: 'permissions',
+      render: () => (
+
+        <div className='rolesPermission' onClick={permissionClick}><AlignLeftOutlined />&nbsp; <u>Permission Details</u></div>
+      )
+
+
+    },
+    {
+      title: 'Action',
+      dataIndex: 'action',
+      key: 'action',
+      render: () => (
+        <Space size={10}>
+          <EditOutlined
+            className="table-edit-icon"
+          // onClick={editDataHandler}
+          />
+          <DeleteOutlined className="table-delete-icon" onClick={showModal} />
+        </Space>
+      ),
+    },
+  ];
+
   return (
     <div>
       {title === 'users' && (
@@ -189,8 +249,8 @@ const DynamicTable = (props: any) => {
       )}
       {title === 'roles' && (
         <Table
-          dataSource={organizationData}
-          columns={organizationColumn}
+          dataSource={rolesData}
+          columns={rolesColumn}
           pagination={
             {
               // total: totalRecords,
