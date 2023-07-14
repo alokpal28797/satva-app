@@ -1,3 +1,24 @@
-.buttonSubscription{
-    
+.buttonSubscription {
+    font-size: 12px !important;
+    font-weight: bold;
+    color: #2E1F7A !important;
+    border-color: #2E1F7A;
+    border-radius: 20px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 20px;
+    padding-top: 10px,
+}
+
+.logo {
+    width: 24px;
+    padding-bottom: 8px
+}
+
+.pricing {
+
+    font-size: 18px;
+    color: #2E1F7A
 }

@@ -1,5 +1,6 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Button, Col, Row, Typography } from "antd";
+import './index.css'
 
 const { Title, Link } = Typography;
 
@@ -16,9 +17,12 @@ const AddInfo = (props: any) => {
   };
 
   const getTitle = GetTitle()
-  console.log("🚀 ~ file: index.tsx:19 ~ AddInfo ~ getTitle:", getTitle.props.children)
+  // // console.log("🚀 ~ file: index.tsx:19 ~ AddInfo ~ getTitle:", getTitle.props.children)
+  console.log(title)
   return (
-    <div style={{ width: "100%" }}>
+
+
+    <div className="addInfoDiv">
       <Row
         style={{ width: "100%" }}
         justify={"space-between"}
@@ -26,7 +30,6 @@ const AddInfo = (props: any) => {
       >
         <Col xs={24} sm={24} md={16} lg={21} className="ps-4 mt-3">
           <Title level={4}>
-            {/* {<GetTitle /> === 'Organization':  } */}
             {getTitle.props.children === 'Subscription' ? `My Subscription` : getTitle.props.children}
             {title === "integrations" && (
               <>
@@ -35,7 +38,18 @@ const AddInfo = (props: any) => {
             )}
           </Title>
         </Col>
-        <Col xs={24} sm={24} md={8} lg={3} className="ps-3 mt-3">
+        {title === 'organization' ? <Col xs={24} sm={24} md={8} lg={3} className="mt-3">
+          {addInfo && (
+            <Button
+              className="organizationBtn"
+              type="primary"
+              icon={<PlusOutlined />}
+              onClick={addUserHandler}
+            >
+              Add {title}
+            </Button>
+          )}
+        </Col> : <Col xs={24} sm={24} md={8} lg={3} className="ps-3 mt-3">
           {addInfo && (
             <Button
               style={{ backgroundColor: "#286FD1", fontSize: 12 }}
@@ -46,7 +60,8 @@ const AddInfo = (props: any) => {
               Add {title}
             </Button>
           )}
-        </Col>
+        </Col>}
+
       </Row>
     </div>
   );

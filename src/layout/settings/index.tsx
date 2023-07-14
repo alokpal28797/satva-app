@@ -12,10 +12,10 @@ const Settings = (props: any) => {
     <>
       <Header />
       <Layout hasSider={true} className='layout' >
-        <div    >
-          <SideBar handleSidebar={handleSidebar}  />
-        </div>
-        <div className='ps-3' style={{maxWidth : '83vw', width: '100%'}}>{children}</div>
+
+        <SideBar handleSidebar={handleSidebar} />
+
+        <div className='layoutChild ps-3'>{children}</div>
       </Layout>
     </>
   );

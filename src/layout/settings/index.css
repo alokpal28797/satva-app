@@ -1,7 +1,14 @@
-.layout{
+.layout {
     height: calc(100vh - 64px);
 }
-.sidebar{
+
+.sidebar {
     overflow-x: auto !important;
     padding-left: 2vw !important;
+}
+
+.layoutChild {
+    max-width: 83vw;
+    width: 100%;
+    overflow: scroll
 }

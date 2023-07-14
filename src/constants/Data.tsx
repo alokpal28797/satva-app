@@ -1,5 +1,5 @@
 import { UserOutlined, MailOutlined, PhoneOutlined, LockOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Switch } from 'antd';
+
 
 export const registerFormData = [
   {
@@ -197,16 +197,14 @@ export const logInFormData = [
 
 
 
-
+// Table const
 export const userDataSource = [
   {
-    // key: '1',
     id: 1,
     name: 'Mike',
     email: 'mike@getMaxListeners.com',
     phone: 67767767676,
     status: 'enable',
-    created: `some date`,
 
   },
   {
@@ -215,7 +213,6 @@ export const userDataSource = [
     email: 'mike@getMaxListeners.com',
     phone: 67767767676,
     status: 'enable',
-    created: `some date`,
 
   },
   {
@@ -224,7 +221,6 @@ export const userDataSource = [
     email: 'mike@getMaxListeners.com',
     phone: 67767767676,
     status: 'enable',
-    created: `some date`,
 
   }, {
     id: 4,
@@ -232,7 +228,6 @@ export const userDataSource = [
     email: 'mike@getMaxListeners.com',
     phone: 67767767676,
     status: 'enable',
-    created: `some date`,
 
   }, {
     id: 5,
@@ -240,7 +235,6 @@ export const userDataSource = [
     email: 'mike@getMaxListeners.com',
     phone: 67767767676,
     status: 'enable',
-    created: `some date`,
 
   }, {
     id: 6,
@@ -248,10 +242,60 @@ export const userDataSource = [
     email: 'mike@getMaxListeners.com',
     phone: 67767767676,
     status: 'enable',
-    created: `some date`,
+
+  },
+  {
+    id: 2,
+    name: 'Aike',
+    email: 'mike@getMaxListeners.com',
+    phone: 67767767676,
+    status: 'enable',
+
+  },
+  {
+    id: 3,
+    name: 'ssike',
+    email: 'mike@getMaxListeners.com',
+    phone: 67767767676,
+    status: 'enable',
+
+  }, {
+    id: 4,
+    name: 'fike',
+    email: 'mike@getMaxListeners.com',
+    phone: 67767767676,
+    status: 'enable',
+
+  }, {
+    id: 5,
+    name: 'dike',
+    email: 'mike@getMaxListeners.com',
+    phone: 67767767676,
+    status: 'enable',
+
+  }, {
+    id: 6,
+    name: 'tike',
+    email: 'mike@getMaxListeners.com',
+    phone: 67767767676,
+    status: 'enable',
 
   },
 ];
+
+const organizationData: any = []
+for (let i = 0; i < 20; i++) {
+  organizationData.push({
+    id: 1,
+    organizationName: `Zydus ${i + 1}`,
+    email: 'Zydus@Zydus.com',
+    phone: 67767767676,
+    created: Date.now(),
+    status: 'active',
+
+  })
+}
+export { organizationData }
 
 
 export const integrationsCards = [
@@ -394,3 +438,106 @@ export const subscriptionCard = [
     ghost: false,
   }
 ]
+
+
+export const preferencesData = [
+  {
+    title: 'Simply Dummy Preference 1',
+    status: true,
+    preferences: [
+      {
+        title: 'Preference 1',
+        status: true,
+      },
+      {
+        title: 'Preference 2',
+        status: true,
+      },
+      {
+        title: 'Preference 3',
+        status: true,
+      },
+      {
+        title: 'Preference 4',
+        status: false,
+      },
+      {
+        title: 'Preference 5',
+        status: false,
+      },
+      {
+        title: 'Preference 6',
+        status: true,
+      },
+      {
+        title: 'Preference 7',
+        status: true,
+      },
+      {
+        title: 'Preference 8',
+        status: false,
+      },
+      {
+        title: 'Preference 9',
+        status: true,
+      },
+      {
+        title: 'Preference 10',
+        status: true,
+      },
+      {
+        title: 'Preference 11',
+        status: false,
+      },
+      {
+        title: 'Preference 12',
+        status: true,
+      },
+    ],
+  },
+  {
+    title: 'Simply Dummy Preference 2',
+    status: false,
+    preferences: [
+      {
+        title: 'Preference 1',
+        status: false,
+      },
+      {
+        title: 'Preference 2',
+        status: false,
+      },
+      {
+        title: 'Preference 3',
+        status: true,
+      },
+      {
+        title: 'Preference 4',
+        status: true,
+      },
+      {
+        title: 'Preference 5',
+        status: true,
+      },
+      {
+        title: 'Preference 6',
+        status: true,
+      },
+      {
+        title: 'Preference 7',
+        status: true,
+      },
+      {
+        title: 'Preference 8',
+        status: false,
+      },
+      {
+        title: 'Preference 9',
+        status: true,
+      },
+    ],
+  },
+
+];
+
+

@@ -1,0 +1,15 @@
+.preferenceDiv {
+    display: inline-grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 50%;
+}
+
+.preferencesCard {
+    width: 70%;
+    margin-bottom: 20px;
+}
+
+.preferencesButton {
+    display: flex;
+    gap: 1.5rem;
+}

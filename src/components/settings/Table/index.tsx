@@ -1,5 +1,5 @@
 import React from 'react'
-import { Space, Switch, Table } from 'antd';
+import { Alert, Space, Switch, Table } from 'antd';
 import Column from 'antd/es/table/Column';
 import './index.css'
 import { useState } from 'react'
@@ -7,7 +7,8 @@ import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 
 
 const DynamicTable = (props: any) => {
-    const { userDataSource, showModal } = props
+    const { userDataSource, showModal, title, organizationData } = props
+    // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // console.log("🚀 ~ file: index.tsx:11 ~ DynamicTable ~ title:", title)
     const [enabled, setEnabled] = useState(userDataSource);
 
     console.log(enabled)
@@ -32,16 +33,12 @@ const DynamicTable = (props: any) => {
 
     const userColumn = [
         {
-            title: 'Organization Name',
+            title: 'Name',
             dataIndex: 'name',
             key: 'name',
-            // defaultSortOrder: 'descend',
             sorter: (a: any, b: any) => {
                 return a.name.length - b.name.length;
             },
-
-
-            // sortDirections: ['descend'],
         },
         {
             title: 'Email Address',
@@ -61,9 +58,66 @@ const DynamicTable = (props: any) => {
 
                 return (
                     <Space>
-                        {status === 'enable' ? <> <Switch size='small' defaultChecked onChange={(e) => { onToggle(e, index) }} /><span>Enable</span></> : <><Switch size='small' checked={false}onChange={(e) => { onToggle(e, index)}} /> <span>Disable</span></>}
+                        {status === 'enable' ? <> <Switch size='small' defaultChecked onChange={(e) => { onToggle(e, index) }} /><span>Enable</span></> : <><Switch size='small' checked={false} onChange={(e) => { onToggle(e, index) }} /> <span>Disable</span></>}
                     </Space>
                 );
+            }
+        },
+        // {
+        //     title: 'Created on',
+        //     dataIndex: 'created',
+        //     key: 'created',
+        // },
+        {
+            title: 'Action',
+            dataIndex: 'action',
+            key: 'action',
+            render: () => (
+                <Space size={10}>
+                    <EditOutlined
+                        className="table-edit-icon"
+                    // onClick={editDataHandler}
+                    />
+                    <DeleteOutlined
+                        className="table-delete-icon"
+                        onClick={showModal}
+                    />
+                </Space>
+            )
+        },
+    ]
+
+    const organizationColumn = [
+        {
+            title: 'Organization Name',
+            dataIndex: 'organizationName',
+            key: 'organizationName',
+            sorter: (a: any, b: any) => {
+                return a.name.length - b.name.length;
+            },
+        },
+        {
+            title: 'Email Address',
+            dataIndex: 'email',
+            key: 'email',
+        },
+        {
+            title: 'Phone number',
+            dataIndex: 'phone',
+            key: 'phone',
+        },
+        {
+            title: 'Status',
+            dataIndex: 'status',
+            key: 'status',
+            render: (status: any, record: any, index: any) => {
+                return (<Alert
+                    message="Active"
+                    // description="Detailed description and advice about successful copywriting."
+                    type="success"
+                // showIcon
+                />)
+
             }
         },
         {
@@ -90,13 +144,10 @@ const DynamicTable = (props: any) => {
         },
     ]
 
-    // console.log(userColumn)
-    // console.log(userDataSource)
-
 
     return (
         <div>
-            <Table
+            {title === 'users' && (<Table
                 dataSource={enabled}
                 columns={userColumn}
                 pagination={{
@@ -108,7 +159,21 @@ const DynamicTable = (props: any) => {
 
 
             >
-            </Table></div>
+            </Table>)}
+            {title === 'organization' && (<Table
+                dataSource={organizationData}
+                columns={organizationColumn}
+                pagination={{
+                    // total: totalRecords,
+                    // current: currentPage,
+                    // onChange: paginationChangeHandler,
+                    // className: 'dynamic-table__pagination',
+                }}
+
+
+            >
+            </Table>)}
+        </div>
     )
 }
 
