@@ -115,7 +115,7 @@ const DynamicTable = (props: any) => {
                     message="Active"
                     // description="Detailed description and advice about successful copywriting."
                     type="success"
-                // showIcon
+                    showIcon
                 />)
 
             }
