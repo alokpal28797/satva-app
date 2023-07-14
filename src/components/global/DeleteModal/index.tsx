@@ -9,9 +9,15 @@ const ConfirmDelete = (props: any) => {
   console.log("🚀 ~ file: index.tsx:9 ~ ConfirmDelete ~ isModalOpen:", isModalOpen)
   // for delete the selected value
   const deleteItemHandler = () => {
-    toastText("User deleted successfully", "success");
-    handleCancel();
+    toastText("Item deleted successfully", "success");
+    handleOk()
   };
+
+  const cancelItemDelete = () => {
+    toastText("Item is not deleted ", "error");
+    handleCancel();
+  }
+
   return (
     <Modal
       title={
@@ -36,7 +42,7 @@ const ConfirmDelete = (props: any) => {
           >
             DELETE
           </Button>
-          <Button key="cancel" onClick={handleCancel}>
+          <Button key="cancel" onClick={cancelItemDelete}>
             Cancel
           </Button>
         </div>

@@ -1,10 +1,17 @@
-.ant-form , .ant-drawer-body{
+.ant-form,
+.ant-drawer-body {
     display: flex;
-    flex-direction :column;
+    flex-direction: column;
     height: 100% !important;
 }
 
-.saveCancelBtnDiv{
+.saveCancelBtnDiv {
     margin-top: auto !important;
 
+}
+
+.saveBtn {
+    margin-right: 8;
+    background-color: #286FD1;
+    width: 86px;
 }
