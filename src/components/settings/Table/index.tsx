@@ -1,21 +1,25 @@
-import React from 'react';
 import { Alert, Space, Switch, Table } from 'antd';
-import Column from 'antd/es/table/Column';
 import './index.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AlignLeftOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import SearchAndFilter from '../SearchAndFilter';
 
 const DynamicTable = (props: any) => {
-  const { userDataSource, showModal, title, organizationData, rolesData, openDrawerHandler, permissionHandler } = props;
+  const { userDataSource, showModal, title, organizationData, rolesData, openDrawerHandler, permissionHandler, paginationChangeHandler, currentPage, totalRecords, performSearchHandler, searchValue, pageSize, handlePageSizeChange } = props;
+  console.log("🚀 ~ file: index.tsx:9 ~ DynamicTable ~ pageSize:", pageSize)
+
   const [enabled, setEnabled] = useState(userDataSource);
 
+  useEffect(() => {
+    setEnabled(userDataSource)
+  }, [userDataSource])
 
   const onToggle = (checked: boolean, index: any) => {
     const data = enabled.map((item: any, ind: any) => {
-      if (checked == true && index === ind) {
+      if (checked === true && index === ind) {
         return { ...item, status: `enable` };
       }
-      if (checked == false && index === ind) {
+      if (checked === false && index === ind) {
         return { ...item, status: `disable` };
       } else {
         return item;
@@ -31,7 +35,10 @@ const DynamicTable = (props: any) => {
     openDrawerHandler()
   }
 
-
+  // pagesize change handler
+  // const tablePageSizeHandler = (e: any) => {
+  //   handlePageSizeChange(e)
+  // }
 
 
   const userColumn = [
@@ -110,7 +117,7 @@ const DynamicTable = (props: any) => {
       dataIndex: 'organizationName',
       key: 'organizationName',
       sorter: (a: any, b: any) => {
-        return a.name.length - b.name.length;
+        return a?.name?.length - b?.name?.length;
       },
     },
     {
@@ -128,10 +135,6 @@ const DynamicTable = (props: any) => {
       dataIndex: 'status',
       key: 'status',
       render: (status: any, record: any, index: any) => {
-        console.log(
-          '🚀 ~ file: index.tsx:113 ~ DynamicTable ~ status:',
-          status
-        );
         if (status === 'active') {
           return <Alert message="Active" type="success" showIcon />;
         } else {
@@ -179,10 +182,6 @@ const DynamicTable = (props: any) => {
       dataIndex: 'status',
       key: 'status',
       render: (status: any, record: any, index: any) => {
-        console.log(
-          '🚀 ~ file: index.tsx:113 ~ DynamicTable ~ status:',
-          status
-        );
         if (status === 'active') {
           return <Alert message="Active" type="success" showIcon />;
         } else {
@@ -219,16 +218,21 @@ const DynamicTable = (props: any) => {
 
   return (
     <div>
+      <SearchAndFilter
+        performSearchHandler={performSearchHandler}
+        searchValue={searchValue}
+        handlePageSizeChange={handlePageSizeChange}
+      />
       {title === 'users' && (
         <Table
           dataSource={enabled}
           columns={userColumn}
           pagination={
             {
-              // total: totalRecords,
-              // current: currentPage,
-              // onChange: paginationChangeHandler,
-              // className: 'dynamic-table__pagination',
+              total: totalRecords,
+              current: currentPage,
+              onChange: paginationChangeHandler,
+              pageSize: pageSize
             }
           }
         ></Table>
@@ -239,10 +243,10 @@ const DynamicTable = (props: any) => {
           columns={organizationColumn}
           pagination={
             {
-              // total: totalRecords,
-              // current: currentPage,
-              // onChange: paginationChangeHandler,
-              // className: 'dynamic-table__pagination',
+              total: totalRecords,
+              current: currentPage,
+              onChange: paginationChangeHandler,
+              pageSize: pageSize
             }
           }
         ></Table>
@@ -253,10 +257,10 @@ const DynamicTable = (props: any) => {
           columns={rolesColumn}
           pagination={
             {
-              // total: totalRecords,
-              // current: currentPage,
-              // onChange: paginationChangeHandler,
-              // className: 'dynamic-table__pagination',
+              total: totalRecords,
+              current: currentPage,
+              onChange: paginationChangeHandler,
+              pageSize: pageSize
             }
           }
         ></Table>

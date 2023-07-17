@@ -1,17 +1,24 @@
 import { SearchOutlined } from '@ant-design/icons';
 import { Col, Input, Row, Space, InputNumber, Select } from 'antd';
-import React, { FC } from 'react';
+import { useState } from 'react';
 // For search filter and paginate
 const SearchAndFilter = (props: any) => {
     // Init
-    const { performSearchHandler, searchValue } = props;
+    const { performSearchHandler, searchValue, handlePageSizeChange } = props;
+
+    const handleChange = (e: any) => {
+        console.log(e);
+        handlePageSizeChange(e)
+
+    }
+
     // JSX
     return (
         <div className='searchFilter'>
             <div className='searchFilterWrapper'>
                 <Row justify={'space-between'}>
                     <Col>
-                        <InputNumber min={10} max={15} defaultValue={10} />
+                        <InputNumber min={10} max={15} defaultValue={10} onChange={handleChange} />
                     </Col>
                     <Col>
                         <Space>

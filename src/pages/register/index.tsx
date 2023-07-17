@@ -145,7 +145,7 @@ const Register = () => {
                         type="primary"
                         htmlType="submit"
                         block={true}
-                        style={{ width: "77.4%", height: "36px",backgroundColor : "#286FD1"  }}
+                        style={{ width: "77.4%", height: "36px", backgroundColor: "#286FD1" }}
                       >
                         Register Now!
                       </Button>
@@ -155,7 +155,7 @@ const Register = () => {
                         className="me-4 belowBtn"
                         type="primary"
                         htmlType="submit"
-                         style={{ backgroundColor: "#0B78C2" }}
+                        style={{ backgroundColor: "#0B78C2" }}
                       >
                         Sign in with Intuit
                       </Button>
@@ -164,17 +164,17 @@ const Register = () => {
                         type="primary"
                         ghost={true}
                         htmlType="submit"
-                        style={{padding : "6.5px"}}
+                        style={{ padding: "6.5px" }}
                       >
-                       <Image src={imgXero} style={{width: "25px"}} preview= {false}/>&nbsp; Sign in with Xero
+                        <Image src={imgXero} style={{ width: "25px" }} preview={false} />&nbsp; Sign in with Xero
                       </Button>
                     </Form.Item>
 
                     <Form.Item
                       name="remember"
                       valuePropName="checked"
-                      style={{marginTop : '3.5%'}}
-                      // wrapperCol={{ offset: 8, span: 16 }}
+                      style={{ marginTop: '3.5%' }}
+                    // wrapperCol={{ offset: 8, span: 16 }}
                     >
                       <Typography>
                         Already have an Account{" "}

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SettingsLayout } from '../../layout';
 import AddInfo from '../../components/settings/AddInfo';
-import SideDrawerWrapper from '../../components/global/SideDrawerWrapper';
 import { Button, Col, Drawer, Row } from 'antd';
 import SideDrawerBody from '../../components/settings/SideDrawerBody';
 import { CloseOutlined } from '@ant-design/icons';
@@ -18,25 +17,52 @@ import {
 import ConfirmDelete from '../../components/global/DeleteModal';
 import IntegrationCard from '../../components/settings/IntegrationCard';
 import SubscriptionCard from '../../components/settings/SubscriptionCard';
-import PreferencesCard from '../../components/settings/PreferencesCard';
 import PreferenceCard from '../../components/settings/PreferencesCard';
 
 const Settings = () => {
-  const [isSideDrawerOpen, setSideDrawerOpen] = useState(false);
-  const [settingComponent, setSettingComponent] = useState('users');
-  console.log(
-    '🚀 ~ file: index.tsx:17 ~ Settings ~ settingComponent:',
-    settingComponent
-  );
+  const [settingComponent, setSettingComponent] = useState('users'); //  use to toggle Global Modal
 
-  //  use to toggle Global Modal
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  // to check it is clicked by permissions in the roles
+  // This state is only because we not have api at current movement
+  const check = () => {
+    if (settingComponent === 'users') {
+      return userDataSource;
+    }
+    if (settingComponent === 'organization') {
+      return organizationData;
+    }
+    if (settingComponent === 'roles') {
+      return rolesData;
+    }
+    if (settingComponent === 'roles') {
+      return rolesData;
+    }
+  };
+
+  useEffect(() => {
+    setFilterData(check);
+  }, [settingComponent]);
+
+  useEffect(() => {
+    setPageSize(10)
+  }, [settingComponent]);
+
+  //  to handle the page size
+  const [pageSize, setPageSize] = useState(10);
+
+  const [filteredData, setFilterData] = useState(check);
+  console.log("🚀 ~ file: index.tsx:46 ~ Settings ~ filteredData:", filteredData)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [data, setData] = useState(filteredData?.slice(0, pageSize));
+  console.log("🚀 ~ file: index.tsx:48 ~ Settings ~ data:", data)
+  const [searchValue, setSearchValue] = useState('');
+
+  const [isSideDrawerOpen, setSideDrawerOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // to check it is clicked by permissions in the roles
   const [isPermission, setIsPermission] = useState(false);
-  console.log(
-    '🚀 ~ file: index.tsx:26 ~ Settings ~ isPermission:',
-    isPermission
-  );
+
+  useEffect(() => {
+    setData(filteredData?.slice(0, 15));
+  }, [filteredData]);
 
   const handleSidebar = (e: any) => {
     setSettingComponent(e.key);
@@ -73,6 +99,36 @@ const Settings = () => {
     setIsPermission(true);
   };
 
+  // For perform the search operation
+  const performSearchHandler = (event: any) => {
+    const { value } = event.target;
+    const valueRegex = new RegExp(value, 'ig');
+
+    setSearchValue(value);
+
+    if (value !== '' || value !== undefined) {
+      const searchedRecords = filteredData.filter((singleRecord: any) => {
+        if (settingComponent === 'organization') {
+          return valueRegex.test(singleRecord.organizationName);
+        }
+        return valueRegex.test(singleRecord.name);
+      });
+
+      setFilterData(searchedRecords);
+
+      setData(searchedRecords.slice(0, pageSize));
+      setCurrentPage(1);
+    }
+
+    setFilterData(check);
+  };
+
+  // Handle the pagination for the table
+  const paginationChangeHandler = (pageNo: number) => {
+    setCurrentPage(pageNo);
+    setData(filteredData.slice((pageNo - 1) * pageSize, pageNo * pageSize));
+  };
+
   // If add functionality required for the component or not
   const getAdd = () => {
     if (
@@ -86,12 +142,15 @@ const Settings = () => {
     }
   };
 
-  console.log(PermissionData);
-
   // To capitalize the first letter of the title
   function capitalizeFirstWord(str: any) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
+
+  // to change page size
+  const handlePageSizeChange = (pageNo: number) => {
+    setPageSize(pageNo)
+  };
 
   return (
     <>
@@ -99,7 +158,6 @@ const Settings = () => {
         <SettingsLayout handleSidebar={handleSidebar}>
           <AddInfo
             openDrawerHandler={openDrawerHandler}
-            // setDrawerInfoHandler={setDrawerInfoHandler}
             title={settingComponent}
             addInfo={getAdd()}
           />
@@ -107,29 +165,56 @@ const Settings = () => {
           {settingComponent === 'users' && (
             <div className="table-responsive">
               <DynamicTable
-                userDataSource={userDataSource}
+                userDataSource={data}
                 showModal={showModal}
                 title={settingComponent}
+                paginationChangeHandler={paginationChangeHandler}
+                currentPage={currentPage}
+                totalRecords={filteredData?.length}
+                performSearchHandler={(event: any) => {
+                  performSearchHandler(event);
+                }}
+                searchValue={searchValue}
+                pageSize={pageSize}
+                handlePageSizeChange={handlePageSizeChange}
               ></DynamicTable>
             </div>
           )}
           {settingComponent === 'organization' && (
             <div className="table-responsive">
               <DynamicTable
-                organizationData={organizationData}
+                organizationData={data}
                 showModal={showModal}
                 title={settingComponent}
+                paginationChangeHandler={paginationChangeHandler}
+                currentPage={currentPage}
+                totalRecords={filteredData?.length}
+                performSearchHandler={(event: any) => {
+                  performSearchHandler(event);
+                }}
+                searchValue={searchValue}
+                pageSize={pageSize}
+                handlePageSizeChange={handlePageSizeChange}
               ></DynamicTable>
             </div>
           )}
           {settingComponent === 'roles' && (
             <div className="table-responsive">
               <DynamicTable
-                rolesData={rolesData}
+                rolesData={data}
                 showModal={showModal}
                 title={settingComponent}
                 openDrawerHandler={openDrawerHandler}
                 permissionHandler={permissionHandler}
+                paginationChangeHandler={paginationChangeHandler}
+                currentPage={currentPage}
+                totalRecords={filteredData?.length}
+                performSearchHandler={(event: any) => {
+                  performSearchHandler(event);
+                }}
+                searchValue={searchValue}
+                pageSize={pageSize}
+                handlePageSizeChange={handlePageSizeChange}
               ></DynamicTable>
             </div>
           )}
@@ -216,7 +301,6 @@ const Settings = () => {
                   Cancel
                 </Button>
               </div>
-
             </>
           )}
         </SettingsLayout>

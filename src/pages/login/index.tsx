@@ -79,7 +79,6 @@ const LogIn = () => {
                     autoComplete="off"
                     layout="vertical"
                     labelAlign="left"
-                    className="myform"
                   >
                     <Row>
                       <Col xs={17} sm={17} md={17} lg={17}>

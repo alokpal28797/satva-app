@@ -12,13 +12,10 @@ const AddInfo = (props: any) => {
   };
   // Get capitalize title
   const GetTitle = () => {
-    console.log(title?.charAt(0).toUpperCase() + title?.slice(1));
     return <>{title?.charAt(0).toUpperCase() + title?.slice(1)}</>;
   };
 
   const getTitle = GetTitle()
-  // // console.log("🚀 ~ file: index.tsx:19 ~ AddInfo ~ getTitle:", getTitle.props.children)
-  console.log(title)
   return (
 
 
