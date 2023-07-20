@@ -340,24 +340,29 @@ export const integrationsCards = [
     buttonText: "Connect to Quickbooks",
     logo: "/assets/Connection/Intuit_QuickBooks_logo.png",
     ghost: false,
+    color : "#3DA02A"
   },
   {
     title: "Connect With ZohoBooks",
     buttonText: "Connect",
     logo: "/assets/Connection/Zoho-Books.png",
     ghost: false,
+    color : '#376FD1'
   },
   {
     title: "Connect With Xero",
     buttonText: "Connect to Xero",
     logo: "/assets/Connection/Xero-logo-v2.png",
     ghost: false,
+    color : '#367EA3'
   },
   {
     title: "Connect With NetSuite",
     buttonText: "Connect",
     logo: "/assets/Connection/oracle.png",
     ghost: false,
+    color : '#376FD1'
+
   },
   {
     title: "Connect With Sage",
@@ -381,7 +386,7 @@ export const integrationsCards = [
     title: "Connect With FreshBooks",
     buttonText: "Connect",
     logo: "/assets/Connection/freshbooks-logo-1.png",
-    ghost: false,
+    ghost: true,
   },
 ];
 

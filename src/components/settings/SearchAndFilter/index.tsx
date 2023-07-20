@@ -1,11 +1,17 @@
 import { SearchOutlined } from "@ant-design/icons";
 import { Col, Input, Row, Space, InputNumber, Select } from "antd";
 import { useState } from "react";
+import "./index.css";
 // For search filter and paginate
 const SearchAndFilter = (props: any) => {
   // Init
-  const { performSearchHandler, searchValue, handlePageSizeChange, title,handleFilter } =
-    props;
+  const {
+    performSearchHandler,
+    searchValue,
+    handlePageSizeChange,
+    title,
+    handleFilter,
+  } = props;
 
   const handleChange = (e: any) => {
     console.log(e);
@@ -18,7 +24,7 @@ const SearchAndFilter = (props: any) => {
   };
   const handleSelectChange = (e: any) => {
     console.log(e);
-    handleFilter(e)
+    handleFilter(e);
   };
 
   // JSX
@@ -60,7 +66,7 @@ const SearchAndFilter = (props: any) => {
             <Col>
               <Space>
                 <Input
-                  placeholder="Search user"
+                  placeholder= {`Search ${title}`}
                   suffix={<SearchOutlined />}
                   onChange={performSearchHandler}
                   value={searchValue}

@@ -21,7 +21,7 @@ const AddInfo = (props: any) => {
 
     <div className="addInfoDiv">
       <Row
-        style={{ width: "100%" }}
+        style={{ width: "98%" }}
         justify={"space-between"}
         align={"middle"}
       >

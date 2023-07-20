@@ -1,6 +1,8 @@
 .organizationBtn {
     background-color: #286FD1;
-    font-size: 11px
+    font-size: 11px;
+    padding-left: 4.5px;
+    padding-right: 4.5px;
 }
 
 .addInfoDiv {
@@ -8,9 +10,9 @@
 }
 
 .btnInfo{
-    padding-left: 4.4%;
+    padding-left: 1% !important;
 }
 
 .btnOrganization{
-    padding-left: 2.1%;
+    padding-left: 0.1%;
 }

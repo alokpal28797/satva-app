@@ -248,7 +248,8 @@ const DynamicTable = (props: any) => {
       />
       {title === 'users' && (
         <Table
-          className='mt-2'
+          scroll={{ x: '60vh', y: '55vh' }}
+          className='mt-2 dynamicTable'
           dataSource={enabled}
           columns={userColumn}
           pagination={
@@ -263,7 +264,8 @@ const DynamicTable = (props: any) => {
       )}
       {title === 'organization' && (
         <Table
-          className='mt-2'
+          scroll={{ x: '60vh', y: '55vh' }}
+          className='mt-2 dynamicTable'
           dataSource={organizationData}
           columns={organizationColumn}
           pagination={
@@ -278,7 +280,8 @@ const DynamicTable = (props: any) => {
       )}
       {title === 'roles' && (
         <Table
-          className='mt-2'
+        scroll={{ x: '60vh', y: '55vh' }}
+          className='mt-2 dynamicTable'
           dataSource={rolesData}
           columns={rolesColumn}
           pagination={

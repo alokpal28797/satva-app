@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { SettingsLayout } from '../../layout';
-import AddInfo from '../../components/settings/AddInfo';
-import { Button, Col, Drawer, Row } from 'antd';
-import SideDrawerBody from '../../components/settings/SideDrawerBody';
-import { CloseOutlined } from '@ant-design/icons';
-import DynamicTable from '../../components/settings/Table';
+import React, { useEffect, useState } from "react";
+import { SettingsLayout } from "../../layout";
+import AddInfo from "../../components/settings/AddInfo";
+import { Button, Col, Drawer, Row } from "antd";
+import SideDrawerBody from "../../components/settings/SideDrawerBody";
+import { CloseOutlined } from "@ant-design/icons";
+import DynamicTable from "../../components/settings/Table";
 import {
   PermissionData,
   integrationsCards,
@@ -13,29 +13,28 @@ import {
   rolesData,
   subscriptionCard,
   userDataSource,
-} from '../../constants/Data';
-import ConfirmDelete from '../../components/global/DeleteModal';
-import IntegrationCard from '../../components/settings/IntegrationCard';
-import SubscriptionCard from '../../components/settings/SubscriptionCard';
-import PreferenceCard from '../../components/settings/PreferencesCard';
+} from "../../constants/Data";
+import ConfirmDelete from "../../components/global/DeleteModal";
+import IntegrationCard from "../../components/settings/IntegrationCard";
+import SubscriptionCard from "../../components/settings/SubscriptionCard";
+import PreferenceCard from "../../components/settings/PreferencesCard";
 
 const Settings = () => {
-  const [settingComponent, setSettingComponent] = useState('users'); //  use to toggle Global Modal
+  const [settingComponent, setSettingComponent] = useState("users"); //  use to toggle Global Modal
+  const [searchValue, setSearchValue] = useState("");
 
   // This state is only because we not have api at current movement
   const check = () => {
-    if (settingComponent === 'users') {
+    if (settingComponent === "users") {
       return userDataSource;
     }
-    if (settingComponent === 'organization') {
+    if (settingComponent === "organization") {
       return organizationData;
     }
-    if (settingComponent === 'roles') {
+    if (settingComponent === "roles") {
       return rolesData;
     }
-    if (settingComponent === 'roles') {
-      return rolesData;
-    }
+
   };
 
   useEffect(() => {
@@ -43,22 +42,26 @@ const Settings = () => {
   }, [settingComponent]);
 
   useEffect(() => {
-    setPageSize(10)
+    setPageSize(10);
   }, [settingComponent]);
 
   //  to handle the page size
   const [pageSize, setPageSize] = useState(10);
 
   const [filteredData, setFilterData] = useState(check);
-  console.log("🚀 ~ file: index.tsx:46 ~ Settings ~ filteredData:", filteredData)
+  console.log(
+    "🚀 ~ file: index.tsx:46 ~ Settings ~ filteredData:",
+    filteredData
+  );
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState(filteredData?.slice(0, pageSize));
-  console.log("🚀 ~ file: index.tsx:48 ~ Settings ~ data:", data)
-  const [searchValue, setSearchValue] = useState('');
+  console.log("🚀 ~ file: index.tsx:48 ~ Settings ~ data:", data);
 
   const [isSideDrawerOpen, setSideDrawerOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false); // to check it is clicked by permissions in the roles
   const [isPermission, setIsPermission] = useState(false);
+
+
 
   useEffect(() => {
     setData(filteredData?.slice(0, 15));
@@ -66,6 +69,8 @@ const Settings = () => {
 
   const handleSidebar = (e: any) => {
     setSettingComponent(e.key);
+    setSearchValue('')
+
   };
 
   // to handle the Drawer open
@@ -102,13 +107,18 @@ const Settings = () => {
   // For perform the search operation
   const performSearchHandler = (event: any) => {
     const { value } = event.target;
-    const valueRegex = new RegExp(value, 'ig');
+    console.log(
+      "🚀 ~ file: index.tsx:105 ~ performSearchHandler ~ value:",
+      value
+    );
+
+    const valueRegex = new RegExp(value, "ig");
 
     setSearchValue(value);
 
-    if (value !== '' || value !== undefined) {
+    if (value !== "" || value !== undefined) {
       const searchedRecords = filteredData.filter((singleRecord: any) => {
-        if (settingComponent === 'organization') {
+        if (settingComponent === "organization") {
           return valueRegex.test(singleRecord.organizationName);
         }
         return valueRegex.test(singleRecord.name);
@@ -132,9 +142,9 @@ const Settings = () => {
   // If add functionality required for the component or not
   const getAdd = () => {
     if (
-      settingComponent === 'users' ||
-      settingComponent === 'organization' ||
-      settingComponent === 'roles'
+      settingComponent === "users" ||
+      settingComponent === "organization" ||
+      settingComponent === "roles"
     ) {
       return true;
     } else {
@@ -149,7 +159,7 @@ const Settings = () => {
 
   // to change page size
   const handlePageSizeChange = (pageNo: number) => {
-    setPageSize(pageNo)
+    setPageSize(pageNo);
   };
 
   return (
@@ -162,7 +172,7 @@ const Settings = () => {
             addInfo={getAdd()}
           />
 
-          {settingComponent === 'users' && (
+          {settingComponent === "users" && (
             <div className="table-responsive">
               <DynamicTable
                 userDataSource={data}
@@ -180,7 +190,7 @@ const Settings = () => {
               ></DynamicTable>
             </div>
           )}
-          {settingComponent === 'organization' && (
+          {settingComponent === "organization" && (
             <div className="table-responsive">
               <DynamicTable
                 organizationData={data}
@@ -198,7 +208,7 @@ const Settings = () => {
               ></DynamicTable>
             </div>
           )}
-          {settingComponent === 'roles' && (
+          {settingComponent === "roles" && (
             <div className="table-responsive">
               <DynamicTable
                 rolesData={data}
@@ -219,8 +229,8 @@ const Settings = () => {
             </div>
           )}
 
-          {settingComponent === 'integrations' && (
-            <div className="ps-4" style={{ width: '98%' }}>
+          {settingComponent === "integrations" && (
+            <div className="ps-4" style={{ width: "98%" }}>
               <Row gutter={16}>
                 {integrationsCards?.map((card, index) => {
                   return (
@@ -238,6 +248,7 @@ const Settings = () => {
                         buttonText={card?.buttonText}
                         logo={card?.logo}
                         ghost={card?.ghost}
+                        color = {card?.color}
                       />
                     </Col>
                   );
@@ -245,8 +256,8 @@ const Settings = () => {
               </Row>
             </div>
           )}
-          {settingComponent === 'subscription' && (
-            <div className="ps-4" style={{ width: '98%' }}>
+          {settingComponent === "subscription" && (
+            <div className="ps-4" style={{ width: "98%" }}>
               <Row gutter={16}>
                 {subscriptionCard?.map((card, index) => {
                   return (
@@ -273,7 +284,7 @@ const Settings = () => {
               </Row>
             </div>
           )}
-          {settingComponent === 'preference' && (
+          {settingComponent === "preference" && (
             <>
               {preferencesData?.map((preference, index) => (
                 <React.Fragment key={index}>
@@ -286,8 +297,8 @@ const Settings = () => {
                   htmlType="submit"
                   style={{
                     marginRight: 8,
-                    backgroundColor: '#286FD1',
-                    width: '86px',
+                    backgroundColor: "#286FD1",
+                    width: "86px",
                   }}
                 >
                   Save
@@ -296,7 +307,7 @@ const Settings = () => {
                   type="primary"
                   htmlType="button"
                   ghost={true}
-                  style={{ width: '86px' }}
+                  style={{ width: "86px" }}
                 >
                   Cancel
                 </Button>
@@ -320,7 +331,7 @@ const Settings = () => {
           closable={false}
         >
           <CloseOutlined
-            style={{ position: 'absolute', right: '23px', top: '20px' }}
+            style={{ position: "absolute", right: "23px", top: "20px" }}
             onClick={onClose}
           />
           <SideDrawerBody
