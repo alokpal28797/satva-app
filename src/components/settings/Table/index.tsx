@@ -35,10 +35,31 @@ const DynamicTable = (props: any) => {
     openDrawerHandler()
   }
 
-  // pagesize change handler
-  // const tablePageSizeHandler = (e: any) => {
-  //   handlePageSizeChange(e)
-  // }
+
+  const handleFilter = (e: any) => {
+    // setEnabled(userDataSource)
+
+    console.log("🚀 ~ file: index.tsx:42 ~ handleFilter ~ handleFilter:", e)
+
+    if (e === 'Enable') {
+      // setEnabled(userDataSource)
+
+      const data = userDataSource.filter((item: any) => item.status === 'enable')
+
+      // console.log("🚀 ~ file: index.tsx:44 ~ handleFilter ~ data:", data)
+      setEnabled(data)
+
+    }
+    if (e === 'Disable') {
+      // setEnabled(userDataSource)
+
+      const data = userDataSource.filter((item: any) => item.status === 'disable')
+
+      // console.log("🚀 ~ file: index.tsx:44 ~ handleFilter ~ data:", data)
+      setEnabled(data)
+
+    }
+  }
 
 
   const userColumn = [
@@ -217,14 +238,17 @@ const DynamicTable = (props: any) => {
   ];
 
   return (
-    <div>
+    <div className='dynamicTable'>
       <SearchAndFilter
         performSearchHandler={performSearchHandler}
         searchValue={searchValue}
         handlePageSizeChange={handlePageSizeChange}
+        title={title}
+        handleFilter={handleFilter}
       />
       {title === 'users' && (
         <Table
+          className='mt-2'
           dataSource={enabled}
           columns={userColumn}
           pagination={
@@ -239,6 +263,7 @@ const DynamicTable = (props: any) => {
       )}
       {title === 'organization' && (
         <Table
+          className='mt-2'
           dataSource={organizationData}
           columns={organizationColumn}
           pagination={
@@ -253,6 +278,7 @@ const DynamicTable = (props: any) => {
       )}
       {title === 'roles' && (
         <Table
+          className='mt-2'
           dataSource={rolesData}
           columns={rolesColumn}
           pagination={

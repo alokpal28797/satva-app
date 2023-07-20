@@ -32,7 +32,6 @@ const Register = () => {
   const formStyle: React.CSSProperties = {
     paddingLeft: "10vh",
     textAlign: "left",
-    // display: 'flex',
     alignItems: "center",
     paddingRight: "1vh",
   };
@@ -55,8 +54,7 @@ const Register = () => {
                 <Col xs={24} sm={24} md={10} lg={10} className="login_image">
                   <Image
                     src={imgLogo}
-                    width={"100%"}
-                    height={"520px"}
+                    
                     preview={false}
                     className="image"
                   />

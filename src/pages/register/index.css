@@ -6,6 +6,8 @@
 .image {
     padding-top: 17vh !important;
     pointer-events: none !important;
+    width: 100% !important;
+    height: 520px !important
 }
 
 .custom-register-form {

@@ -124,18 +124,17 @@ const LogIn = () => {
                         );
                       })}
                     </div>
-                    <Typography
+                    {/* <Typography
                       style={{
                         fontSize: "10px",
-                        marginTop: "-18px",
                         opacity: "50%",
                       }}
                       className="mb-3"
                     >
                       Must be 8 characters at least
-                    </Typography>
+                    </Typography> */}
 
-                    <Row>
+                    <Row className="mt-3">
                       <Col xs={24} sm={24} md={13} lg={13}>
                         <Checkbox style={{ opacity: "70%" }}>
                           <b>Remember me</b>
