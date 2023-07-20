@@ -171,8 +171,6 @@ const Register = () => {
                     <Form.Item
                       name="remember"
                       valuePropName="checked"
-                      style={{ marginTop: '3.5%' }}
-                    // wrapperCol={{ offset: 8, span: 16 }}
                     >
                       <Typography>
                         Already have an Account{" "}
