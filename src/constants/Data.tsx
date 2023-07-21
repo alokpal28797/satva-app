@@ -86,18 +86,19 @@ export const registerFormData = [
       },
       ({ getFieldValue }: any) => ({
         validator() {
+          console.log(getFieldValue("phone"));
           const re = /^\d{10}$/;
-          if (getFieldValue('phone') !== undefined) {
-            if (re.test(getFieldValue('phone'))) {
+          if (getFieldValue("phone") !== undefined) {
+            if (re.test(getFieldValue("phone"))) {
               return Promise.resolve();
             } else {
-              return Promise.reject(new Error('Invalid phone number'))
+              return Promise.reject(new Error("Invalid phone number"));
             }
           }
-          return Promise.reject()
+          return Promise.reject();
         },
         validateTrigger: "onSubmit",
-      })
+      }),
     ],
   },
   {
@@ -209,14 +210,18 @@ export const logInFormData = [
       ({ getFieldValue }: any) => ({
         validator() {
           const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
-          if (getFieldValue('password') !== undefined) {
+          if (getFieldValue("password") !== undefined) {
             if (re.test(getFieldValue("password"))) {
               return Promise.resolve();
             } else {
-              return Promise.reject(new Error("The password must be 6 to 16 characters long and contain at least one digit and one special character (!@#$%^&*)"));
+              return Promise.reject(
+                new Error(
+                  "The password must be 6 to 16 characters long and contain at least one digit and one special character (!@#$%^&*)"
+                )
+              );
             }
           }
-          return Promise.reject()
+          return Promise.reject();
         },
         validateTrigger: "onSubmit",
       }),
@@ -340,53 +345,64 @@ export const integrationsCards = [
     buttonText: "Connect to Quickbooks",
     logo: "/assets/Connection/Intuit_QuickBooks_logo.png",
     ghost: false,
-    color : "#3DA02A"
+    backgroundColor: "#3DA02A",
+    smallLogo: '',
   },
   {
     title: "Connect With ZohoBooks",
     buttonText: "Connect",
     logo: "/assets/Connection/Zoho-Books.png",
     ghost: false,
-    color : '#376FD1'
+    backgroundColor: "#376FD1",
+    smallLogo: "",
   },
   {
     title: "Connect With Xero",
     buttonText: "Connect to Xero",
     logo: "/assets/Connection/Xero-logo-v2.png",
     ghost: false,
-    color : '#367EA3'
+    backgroundColor: "#367EA3",
+    smallLogo: "assets/Connection/Xero.png",
   },
   {
     title: "Connect With NetSuite",
     buttonText: "Connect",
     logo: "/assets/Connection/oracle.png",
     ghost: false,
-    color : '#376FD1'
-
+    backgroundColor: "#376FD1",
+    smallLogo: "",
   },
   {
     title: "Connect With Sage",
     buttonText: "Connect",
     logo: "/assets/Connection/Sage_logo.png",
     ghost: true,
+    backgroundColor: "",
+    smallLogo: "",
   },
   {
     title: "Connect With ClearBooks",
     buttonText: "Connect",
     logo: "/assets/Connection/clear-books-logo-cmyk.png",
     ghost: true,
+    backgroundColor: "",
+    smallLogo: "",
   },
   {
     title: "Connect With Business Central",
     buttonText: "Connect",
     logo: "/assets/Connection/Business-CentralLogo-v2.png",
     ghost: true,
+    backgroundColor: "",
+    smallLogo: "",
   },
   {
     title: "Connect With FreshBooks",
     buttonText: "Connect",
     logo: "/assets/Connection/freshbooks-logo-1.png",
     ghost: true,
+    backgroundColor: "",
+    smallLogo: "",
   },
 ];
 

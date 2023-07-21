@@ -10,5 +10,5 @@
 .layoutChild {
     max-width: 87vw;
     width: 100%;
-    /* overflow: scroll */
+    overflow-y: scroll
 }

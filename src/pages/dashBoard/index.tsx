@@ -7,14 +7,13 @@ import Navbar from "../../components/global/Navbar";
 export default function Dashboard() {
   const { Header, Footer, Sider, Content } = Layout;
 
- 
-
   const contentStyle: React.CSSProperties = {
     textAlign: "center",
     minHeight: 120,
     lineHeight: "120px",
-    color: "#fff",
-    backgroundColor: "#108ee9",
+    color: "black",
+    fontSize : 30,
+    marginTop : 180
   };
 
   const siderStyle: React.CSSProperties = {
@@ -42,10 +41,8 @@ export default function Dashboard() {
         </Row>
       </Sider>
       <Layout>
-        {/* <Header style={headerStyle}>Dashboard</Header> */}
         <Navbar/>
-        <Content style={contentStyle}>Content</Content>
-        {/* <Footer style={footerStyle}>Footer</Footer> */}
+        <Content style={contentStyle}>Dashboard Screen Will Come Soon !!!</Content>
       </Layout>
     </Layout>
   );

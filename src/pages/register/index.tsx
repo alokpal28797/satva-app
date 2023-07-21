@@ -17,10 +17,12 @@ import { Content } from "antd/es/layout/layout";
 import "./index.css";
 import Title from "antd/es/typography/Title";
 import { registerFormData } from "./../../constants/Data";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LeftOutlined } from "@ant-design/icons";
 
 const Register = () => {
+  const navigate = useNavigate()
+
   const ContentStyle: React.CSSProperties = {
     textAlign: "center",
     minHeight: "100vh",
@@ -38,6 +40,7 @@ const Register = () => {
 
   const onFinish = (values: any) => {
     console.log('Success:', values);
+    navigate('/dashboard')
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -54,7 +57,7 @@ const Register = () => {
                 <Col xs={24} sm={24} md={10} lg={10} className="login_image">
                   <Image
                     src={imgLogo}
-                    
+
                     preview={false}
                     className="image"
                   />

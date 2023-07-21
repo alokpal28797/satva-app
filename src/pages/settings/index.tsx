@@ -187,6 +187,7 @@ const Settings = () => {
                 searchValue={searchValue}
                 pageSize={pageSize}
                 handlePageSizeChange={handlePageSizeChange}
+                openDrawerHandler={openDrawerHandler}
               ></DynamicTable>
             </div>
           )}
@@ -230,7 +231,7 @@ const Settings = () => {
           )}
 
           {settingComponent === "integrations" && (
-            <div className="ps-4" style={{ width: "98%" }}>
+            <div className="" style={{ width: "98%" }}>
               <Row gutter={16}>
                 {integrationsCards?.map((card, index) => {
                   return (
@@ -248,7 +249,8 @@ const Settings = () => {
                         buttonText={card?.buttonText}
                         logo={card?.logo}
                         ghost={card?.ghost}
-                        color = {card?.color}
+                        backgroundColor = {card?.backgroundColor}
+                        smallLogo = {card?.smallLogo}
                       />
                     </Col>
                   );
