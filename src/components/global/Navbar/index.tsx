@@ -51,7 +51,7 @@ const Navbar = () => {
                     </Paragraph>
                   </div>
                 </Col>
-                <LoginOutlined style={{ paddingLeft: "210%", fontSize: 18 }} />
+                <LoginOutlined style={{ paddingLeft: "210%", fontSize: 18 }} onClick={()=>{navigate('/login')}} />
               </Space>
             </Row>
           </Col>
