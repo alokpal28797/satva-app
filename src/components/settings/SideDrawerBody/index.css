@@ -7,11 +7,18 @@
 
 .saveCancelBtnDiv {
     margin-top: auto !important;
-
+    width: 60% !important;
+    color: #286FD1;
 }
 
 .saveBtn {
     margin-right: 8;
     background-color: #286FD1;
     width: 86px;
+}
+
+.ant-form{
+  display: flex;
+  flex-direction: column;
+  height: 95% !important;
 }
