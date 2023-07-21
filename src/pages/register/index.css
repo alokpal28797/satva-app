@@ -6,6 +6,8 @@
 .image {
     padding-top: 17vh !important;
     pointer-events: none !important;
+    width: 100% !important;
+    height: 520px !important
 }
 
 .custom-register-form {
@@ -20,6 +22,15 @@ svg {
 .belowBtn {
     height: 36px !important;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+
 
 @media only screen and (max-width: 445px) {
     .belowBtn {

@@ -1,6 +1,4 @@
-import React from 'react';
 import { Button, Checkbox, Col, Form, Input, Row, Table } from 'antd';
-import { SideDrawerBodyProps } from './types';
 import { userDrawerBody } from '../../../constants/Data';
 import { toastText } from '../../../Utils/utils';
 import './index.css';
@@ -11,13 +9,13 @@ const SideDrawerBody = (props: any) => {
 
   // If form get success
   const onFinish = (values: any) => {
-    toastText('User created successfully', 'success');
+    toastText(`${title} created successfully`, 'success');
     // closeDrawerByAnimation();
-    console.log('Success:', values);
   };
 
   // If form fails
   const onFinishFailed = (errorInfo: any) => {
+    toastText(`${title} is not created`, 'error');
     console.log('Failed:', errorInfo);
   };
 
@@ -251,7 +249,7 @@ const SideDrawerBody = (props: any) => {
               <Button
                 type="primary"
                 htmlType="submit"
-                className='saveBtn'
+                className='saveBtn me-2'
               >
                 Save
               </Button>

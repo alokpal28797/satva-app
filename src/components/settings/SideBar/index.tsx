@@ -53,8 +53,12 @@ const SideBar = (props: SidebarProps) => {
                 background: "#fff",
                 maxHeight: "100%",
                 height: "100%",
-                overflow: "auto",
+                // overflow: "auto",
+                // borderLeft: '2px solid black',
+                // paddingLeft: '24px',
+                // borderRadius: '0px'
             }}
+
         >
             <div>
                 <Menu
@@ -71,7 +75,7 @@ const SideBar = (props: SidebarProps) => {
                     Get Support
                 </Button>
             </div>
-        </Sider>
+        </Sider >
     );
 };
 

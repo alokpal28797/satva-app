@@ -12,23 +12,20 @@ const AddInfo = (props: any) => {
   };
   // Get capitalize title
   const GetTitle = () => {
-    console.log(title?.charAt(0).toUpperCase() + title?.slice(1));
     return <>{title?.charAt(0).toUpperCase() + title?.slice(1)}</>;
   };
 
   const getTitle = GetTitle()
-  // // console.log("🚀 ~ file: index.tsx:19 ~ AddInfo ~ getTitle:", getTitle.props.children)
-  console.log(title)
   return (
 
 
     <div className="addInfoDiv">
       <Row
-        style={{ width: "100%" }}
+        style={{ width: "98%" }}
         justify={"space-between"}
         align={"middle"}
       >
-        <Col xs={24} sm={24} md={16} lg={21} className="ps-4 mt-3">
+        <Col xs={24} sm={24} md={16} lg={21} className=" mt-3">
           <Title level={4}>
             {getTitle.props.children === 'Subscription' ? `My Subscription` : getTitle.props.children}
             {title === "integrations" && (
@@ -38,7 +35,7 @@ const AddInfo = (props: any) => {
             )}
           </Title>
         </Col>
-        {title === 'organization' ? <Col xs={24} sm={24} md={8} lg={3} className="mt-3">
+        {title === 'organization' ? <Col xs={24} sm={24} md={8} lg={3} className="btnOrganization mt-3">
           {addInfo && (
             <Button
               className="organizationBtn"
@@ -49,7 +46,9 @@ const AddInfo = (props: any) => {
               Add {title}
             </Button>
           )}
-        </Col> : <Col xs={24} sm={24} md={8} lg={3} className="ps-3 mt-3">
+        </Col> 
+        :
+         <Col xs={24} sm={24} md={8} lg={3} className="btnInfo mt-3">
           {addInfo && (
             <Button
               style={{ backgroundColor: "#286FD1", fontSize: 12 }}

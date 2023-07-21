@@ -6,7 +6,6 @@ import { toastText } from "../../../Utils/utils";
 const ConfirmDelete = (props: any) => {
   // Inits
   const { handleCancel, handleOk, isModalOpen } = props;
-  console.log("🚀 ~ file: index.tsx:9 ~ ConfirmDelete ~ isModalOpen:", isModalOpen)
   // for delete the selected value
   const deleteItemHandler = () => {
     toastText("Item deleted successfully", "success");

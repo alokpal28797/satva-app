@@ -1,3 +1,5 @@
-.searchFilter {}
+.searchFilter {
+    width: 98% !important;
+}
 
 .searchFilterWrapper {}

@@ -1,8 +1,21 @@
-
-.getSupport{
+.getSupport {
     margin-top: 43vh !important;
 }
 
-.getSupportAlign{
+.getSupportAlign {
     padding-left: 2vw !important;
+}
+
+.ant-menu-item-selected {
+    border-left: 3px solid #376FD1 !important;
+    padding-left: 24px !important;
+    border-radius: 0px !important;
+    color: black !important;
+}
+.ant-menu-item-selected  :focus{
+    outline: none;
+}
+
+.ant-menu-item{
+    margin: 0px !important;
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Col,
   Image,
@@ -17,10 +17,13 @@ import imgXero from "../../assets/images/Log-In/Xero.png";
 import { Content } from "antd/es/layout/layout";
 import "./index.css";
 import Title from "antd/es/typography/Title";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logInFormData } from "../../constants/Data";
 
 const LogIn = () => {
+  
+  const navigate = useNavigate()
+
   const ContentStyle: React.CSSProperties = {
     textAlign: "center",
     minHeight: "100vh",
@@ -36,14 +39,17 @@ const LogIn = () => {
     alignItems: "center",
     paddingRight: "1vh",
   };
+  
 
   const onFinish = (values: any) => {
     console.log("Success:", values);
+    navigate('/dashboard')
   };
 
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
+
 
   return (
     <>
@@ -79,7 +85,6 @@ const LogIn = () => {
                     autoComplete="off"
                     layout="vertical"
                     labelAlign="left"
-                    className="myform"
                   >
                     <Row>
                       <Col xs={17} sm={17} md={17} lg={17}>
@@ -108,6 +113,7 @@ const LogIn = () => {
                                 <Input.Password
                                   placeholder={item?.placeholder}
                                   size="large"
+                                  name = ''
                                 />
                               ) : item?.type === "number" ? (
                                 <Input
@@ -125,17 +131,6 @@ const LogIn = () => {
                         );
                       })}
                     </div>
-                    <Typography
-                      style={{
-                        fontSize: "10px",
-                        marginTop: "-18px",
-                        opacity: "50%",
-                      }}
-                      className="mb-3"
-                    >
-                      Must be 8 characters at least
-                    </Typography>
-
                     <Row>
                       <Col xs={24} sm={24} md={13} lg={13}>
                         <Checkbox style={{ opacity: "70%" }}>
@@ -164,6 +159,7 @@ const LogIn = () => {
                           height: "36px",
                           backgroundColor: "#286FD1",
                         }}
+                        
                       >
                         Sign in
                       </Button>

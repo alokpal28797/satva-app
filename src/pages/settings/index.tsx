@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { SettingsLayout } from '../../layout';
-import AddInfo from '../../components/settings/AddInfo';
-import SideDrawerWrapper from '../../components/global/SideDrawerWrapper';
-import { Button, Col, Drawer, Row } from 'antd';
-import SideDrawerBody from '../../components/settings/SideDrawerBody';
-import { CloseOutlined } from '@ant-design/icons';
-import DynamicTable from '../../components/settings/Table';
+import React, { useEffect, useState } from "react";
+import { SettingsLayout } from "../../layout";
+import AddInfo from "../../components/settings/AddInfo";
+import { Button, Col, Drawer, Row } from "antd";
+import SideDrawerBody from "../../components/settings/SideDrawerBody";
+import { CloseOutlined } from "@ant-design/icons";
+import DynamicTable from "../../components/settings/Table";
 import {
   PermissionData,
   integrationsCards,
@@ -14,32 +13,64 @@ import {
   rolesData,
   subscriptionCard,
   userDataSource,
-} from '../../constants/Data';
-import ConfirmDelete from '../../components/global/DeleteModal';
-import IntegrationCard from '../../components/settings/IntegrationCard';
-import SubscriptionCard from '../../components/settings/SubscriptionCard';
-import PreferencesCard from '../../components/settings/PreferencesCard';
-import PreferenceCard from '../../components/settings/PreferencesCard';
+} from "../../constants/Data";
+import ConfirmDelete from "../../components/global/DeleteModal";
+import IntegrationCard from "../../components/settings/IntegrationCard";
+import SubscriptionCard from "../../components/settings/SubscriptionCard";
+import PreferenceCard from "../../components/settings/PreferencesCard";
 
 const Settings = () => {
-  const [isSideDrawerOpen, setSideDrawerOpen] = useState(false);
-  const [settingComponent, setSettingComponent] = useState('users');
-  console.log(
-    '🚀 ~ file: index.tsx:17 ~ Settings ~ settingComponent:',
-    settingComponent
-  );
+  const [settingComponent, setSettingComponent] = useState("users"); //  use to toggle Global Modal
+  const [searchValue, setSearchValue] = useState("");
 
-  //  use to toggle Global Modal
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  // to check it is clicked by permissions in the roles
-  const [isPermission, setIsPermission] = useState(false);
+  // This state is only because we not have api at current movement
+  const check = () => {
+    if (settingComponent === "users") {
+      return userDataSource;
+    }
+    if (settingComponent === "organization") {
+      return organizationData;
+    }
+    if (settingComponent === "roles") {
+      return rolesData;
+    }
+
+  };
+
+  useEffect(() => {
+    setFilterData(check);
+  }, [settingComponent]);
+
+  useEffect(() => {
+    setPageSize(10);
+  }, [settingComponent]);
+
+  //  to handle the page size
+  const [pageSize, setPageSize] = useState(10);
+
+  const [filteredData, setFilterData] = useState(check);
   console.log(
-    '🚀 ~ file: index.tsx:26 ~ Settings ~ isPermission:',
-    isPermission
+    "🚀 ~ file: index.tsx:46 ~ Settings ~ filteredData:",
+    filteredData
   );
+  const [currentPage, setCurrentPage] = useState(1);
+  const [data, setData] = useState(filteredData?.slice(0, pageSize));
+  console.log("🚀 ~ file: index.tsx:48 ~ Settings ~ data:", data);
+
+  const [isSideDrawerOpen, setSideDrawerOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // to check it is clicked by permissions in the roles
+  const [isPermission, setIsPermission] = useState(false);
+
+
+
+  useEffect(() => {
+    setData(filteredData?.slice(0, 15));
+  }, [filteredData]);
 
   const handleSidebar = (e: any) => {
     setSettingComponent(e.key);
+    setSearchValue('')
+
   };
 
   // to handle the Drawer open
@@ -73,12 +104,47 @@ const Settings = () => {
     setIsPermission(true);
   };
 
+  // For perform the search operation
+  const performSearchHandler = (event: any) => {
+    const { value } = event.target;
+    console.log(
+      "🚀 ~ file: index.tsx:105 ~ performSearchHandler ~ value:",
+      value
+    );
+
+    const valueRegex = new RegExp(value, "ig");
+
+    setSearchValue(value);
+
+    if (value !== "" || value !== undefined) {
+      const searchedRecords = filteredData.filter((singleRecord: any) => {
+        if (settingComponent === "organization") {
+          return valueRegex.test(singleRecord.organizationName);
+        }
+        return valueRegex.test(singleRecord.name);
+      });
+
+      setFilterData(searchedRecords);
+
+      setData(searchedRecords.slice(0, pageSize));
+      setCurrentPage(1);
+    }
+
+    setFilterData(check);
+  };
+
+  // Handle the pagination for the table
+  const paginationChangeHandler = (pageNo: number) => {
+    setCurrentPage(pageNo);
+    setData(filteredData.slice((pageNo - 1) * pageSize, pageNo * pageSize));
+  };
+
   // If add functionality required for the component or not
   const getAdd = () => {
     if (
-      settingComponent === 'users' ||
-      settingComponent === 'organization' ||
-      settingComponent === 'roles'
+      settingComponent === "users" ||
+      settingComponent === "organization" ||
+      settingComponent === "roles"
     ) {
       return true;
     } else {
@@ -86,12 +152,15 @@ const Settings = () => {
     }
   };
 
-  console.log(PermissionData);
-
   // To capitalize the first letter of the title
   function capitalizeFirstWord(str: any) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
+
+  // to change page size
+  const handlePageSizeChange = (pageNo: number) => {
+    setPageSize(pageNo);
+  };
 
   return (
     <>
@@ -99,43 +168,70 @@ const Settings = () => {
         <SettingsLayout handleSidebar={handleSidebar}>
           <AddInfo
             openDrawerHandler={openDrawerHandler}
-            // setDrawerInfoHandler={setDrawerInfoHandler}
             title={settingComponent}
             addInfo={getAdd()}
           />
 
-          {settingComponent === 'users' && (
+          {settingComponent === "users" && (
             <div className="table-responsive">
               <DynamicTable
-                userDataSource={userDataSource}
+                userDataSource={data}
                 showModal={showModal}
                 title={settingComponent}
+                paginationChangeHandler={paginationChangeHandler}
+                currentPage={currentPage}
+                totalRecords={filteredData?.length}
+                performSearchHandler={(event: any) => {
+                  performSearchHandler(event);
+                }}
+                searchValue={searchValue}
+                pageSize={pageSize}
+                handlePageSizeChange={handlePageSizeChange}
+                openDrawerHandler={openDrawerHandler}
               ></DynamicTable>
             </div>
           )}
-          {settingComponent === 'organization' && (
+          {settingComponent === "organization" && (
             <div className="table-responsive">
               <DynamicTable
-                organizationData={organizationData}
+                organizationData={data}
                 showModal={showModal}
                 title={settingComponent}
+                paginationChangeHandler={paginationChangeHandler}
+                currentPage={currentPage}
+                totalRecords={filteredData?.length}
+                performSearchHandler={(event: any) => {
+                  performSearchHandler(event);
+                }}
+                searchValue={searchValue}
+                pageSize={pageSize}
+                handlePageSizeChange={handlePageSizeChange}
               ></DynamicTable>
             </div>
           )}
-          {settingComponent === 'roles' && (
+          {settingComponent === "roles" && (
             <div className="table-responsive">
               <DynamicTable
-                rolesData={rolesData}
+                rolesData={data}
                 showModal={showModal}
                 title={settingComponent}
                 openDrawerHandler={openDrawerHandler}
                 permissionHandler={permissionHandler}
+                paginationChangeHandler={paginationChangeHandler}
+                currentPage={currentPage}
+                totalRecords={filteredData?.length}
+                performSearchHandler={(event: any) => {
+                  performSearchHandler(event);
+                }}
+                searchValue={searchValue}
+                pageSize={pageSize}
+                handlePageSizeChange={handlePageSizeChange}
               ></DynamicTable>
             </div>
           )}
 
-          {settingComponent === 'integrations' && (
-            <div className="ps-4" style={{ width: '98%' }}>
+          {settingComponent === "integrations" && (
+            <div className="" style={{ width: "98%" }}>
               <Row gutter={16}>
                 {integrationsCards?.map((card, index) => {
                   return (
@@ -153,6 +249,8 @@ const Settings = () => {
                         buttonText={card?.buttonText}
                         logo={card?.logo}
                         ghost={card?.ghost}
+                        backgroundColor = {card?.backgroundColor}
+                        smallLogo = {card?.smallLogo}
                       />
                     </Col>
                   );
@@ -160,8 +258,8 @@ const Settings = () => {
               </Row>
             </div>
           )}
-          {settingComponent === 'subscription' && (
-            <div className="ps-4" style={{ width: '98%' }}>
+          {settingComponent === "subscription" && (
+            <div className="ps-4" style={{ width: "98%" }}>
               <Row gutter={16}>
                 {subscriptionCard?.map((card, index) => {
                   return (
@@ -188,7 +286,7 @@ const Settings = () => {
               </Row>
             </div>
           )}
-          {settingComponent === 'preference' && (
+          {settingComponent === "preference" && (
             <>
               {preferencesData?.map((preference, index) => (
                 <React.Fragment key={index}>
@@ -201,8 +299,8 @@ const Settings = () => {
                   htmlType="submit"
                   style={{
                     marginRight: 8,
-                    backgroundColor: '#286FD1',
-                    width: '86px',
+                    backgroundColor: "#286FD1",
+                    width: "86px",
                   }}
                 >
                   Save
@@ -211,12 +309,11 @@ const Settings = () => {
                   type="primary"
                   htmlType="button"
                   ghost={true}
-                  style={{ width: '86px' }}
+                  style={{ width: "86px" }}
                 >
                   Cancel
                 </Button>
               </div>
-
             </>
           )}
         </SettingsLayout>
@@ -236,7 +333,7 @@ const Settings = () => {
           closable={false}
         >
           <CloseOutlined
-            style={{ position: 'absolute', right: '23px', top: '20px' }}
+            style={{ position: "absolute", right: "23px", top: "20px" }}
             onClick={onClose}
           />
           <SideDrawerBody

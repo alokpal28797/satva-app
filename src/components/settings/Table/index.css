@@ -16,3 +16,25 @@
     color: #4985D8;
     cursor: pointer;
 }
+
+.dynamicTable {
+    width: 98%;
+}
+.ant-pagination{
+    justify-content: center !important;
+}
+
+.ant-pagination-item-link {
+    border: 1px solid rgb(207, 207, 207) !important;
+    border-radius: 100px !important ;
+}
+.ant-pagination-item{
+    border: 1px solid rgb(207, 207, 207) !important;
+    border-radius: 100px !important ;
+}
+
+.ant-pagination-item-active{
+    background-color: #376FD1 !important;
+    color: white !important;
+    border:none !important;
+}
