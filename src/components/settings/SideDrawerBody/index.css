@@ -17,7 +17,7 @@
     width: 86px;
 }
 
-.ant-form{
+ .DrawerForm {
   display: flex;
   flex-direction: column;
   height: 95% !important;

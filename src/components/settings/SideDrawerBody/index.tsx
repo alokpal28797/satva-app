@@ -10,13 +10,11 @@ const SideDrawerBody = (props: any) => {
   // If form get success
   const onFinish = (values: any) => {
     toastText(`${title} created successfully`, 'success');
-    // closeDrawerByAnimation();
   };
 
   // If form fails
   const onFinishFailed = (errorInfo: any) => {
     toastText(`${title} is not created`, 'error');
-    console.log('Failed:', errorInfo);
   };
 
   // table Header
@@ -64,6 +62,7 @@ const SideDrawerBody = (props: any) => {
     <>
       {title === 'users' && (
         <Form
+        className='DrawerForm'
           name="basic"
           initialValues={{ remember: true }}
           onFinish={onFinish}

@@ -34,7 +34,6 @@ const Settings = () => {
     if (settingComponent === "roles") {
       return rolesData;
     }
-
   };
 
   useEffect(() => {
@@ -49,19 +48,13 @@ const Settings = () => {
   const [pageSize, setPageSize] = useState(10);
 
   const [filteredData, setFilterData] = useState(check);
-  console.log(
-    "🚀 ~ file: index.tsx:46 ~ Settings ~ filteredData:",
-    filteredData
-  );
+
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState(filteredData?.slice(0, pageSize));
-  console.log("🚀 ~ file: index.tsx:48 ~ Settings ~ data:", data);
 
   const [isSideDrawerOpen, setSideDrawerOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false); // to check it is clicked by permissions in the roles
   const [isPermission, setIsPermission] = useState(false);
-
-
 
   useEffect(() => {
     setData(filteredData?.slice(0, 15));
@@ -69,8 +62,7 @@ const Settings = () => {
 
   const handleSidebar = (e: any) => {
     setSettingComponent(e.key);
-    setSearchValue('')
-
+    setSearchValue("");
   };
 
   // to handle the Drawer open
@@ -107,10 +99,6 @@ const Settings = () => {
   // For perform the search operation
   const performSearchHandler = (event: any) => {
     const { value } = event.target;
-    console.log(
-      "🚀 ~ file: index.tsx:105 ~ performSearchHandler ~ value:",
-      value
-    );
 
     const valueRegex = new RegExp(value, "ig");
 
@@ -249,8 +237,8 @@ const Settings = () => {
                         buttonText={card?.buttonText}
                         logo={card?.logo}
                         ghost={card?.ghost}
-                        backgroundColor = {card?.backgroundColor}
-                        smallLogo = {card?.smallLogo}
+                        backgroundColor={card?.backgroundColor}
+                        smallLogo={card?.smallLogo}
                       />
                     </Col>
                   );

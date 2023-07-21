@@ -3,7 +3,6 @@ import { Card, Image, Button } from "antd";
 import "./index.css";
 
 const IntegrationCard = (props: any) => {
-  console.log(props);
   return (
     <Card style={{overflowX : "auto"}} bordered={false} className="mt-3 integrationCard">
       <Image className="img" preview={false} src={props?.logo} />

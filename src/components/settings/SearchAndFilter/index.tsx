@@ -14,7 +14,6 @@ const SearchAndFilter = (props: any) => {
   } = props;
 
   const handleChange = (e: any) => {
-    console.log(e);
     if (e === null) {
       e = 10;
       handlePageSizeChange(e);
@@ -23,7 +22,6 @@ const SearchAndFilter = (props: any) => {
     }
   };
   const handleSelectChange = (e: any) => {
-    console.log(e);
     handleFilter(e);
   };
 

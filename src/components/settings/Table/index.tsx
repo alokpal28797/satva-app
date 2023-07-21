@@ -25,7 +25,6 @@ const DynamicTable = (props: any) => {
     pageSize,
     handlePageSizeChange,
   } = props;
-  console.log("🚀 ~ file: index.tsx:9 ~ DynamicTable ~ pageSize:", pageSize);
 
   const [enabled, setEnabled] = useState(userDataSource);
 
@@ -55,8 +54,6 @@ const DynamicTable = (props: any) => {
   };
 
   const handleFilter = (e: any) => {
-    console.log("🚀 ~ file: index.tsx:42 ~ handleFilter ~ handleFilter:", e);
-
     if (e === "Enable") {
       const data = userDataSource.filter(
         (item: any) => item.status === "enable"

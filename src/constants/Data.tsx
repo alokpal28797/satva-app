@@ -86,7 +86,6 @@ export const registerFormData = [
       },
       ({ getFieldValue }: any) => ({
         validator() {
-          console.log(getFieldValue("phone"));
           const re = /^\d{10}$/;
           if (getFieldValue("phone") !== undefined) {
             if (re.test(getFieldValue("phone"))) {
@@ -120,7 +119,6 @@ export const registerFormData = [
       ({ getFieldValue }: any) => ({
         validator() {
           const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
-          console.log(getFieldValue("password"));
           if (getFieldValue("password") !== undefined) {
             if (re.test(getFieldValue("password"))) {
               return Promise.resolve();

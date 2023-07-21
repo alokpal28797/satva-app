@@ -39,12 +39,10 @@ const Register = () => {
   };
 
   const onFinish = (values: any) => {
-    console.log('Success:', values);
     navigate('/dashboard')
   };
 
   const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
   };
 
   return (
