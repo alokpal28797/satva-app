@@ -1,3 +1,3 @@
 export type SideDrawerBodyProps = {
-    Title: () => void;
+   Title: () => void
 }

@@ -1,23 +1,22 @@
-import toast, { Toaster } from 'react-hot-toast';
-
+import toast, { Toaster } from 'react-hot-toast'
 
 export const toastText = (message: string, type: string) => {
-  switch (type) {
-    case 'success':
-      toast.success(message, {
-        style: {
-          fontSize: '16px',
-        },
-      });
+   switch (type) {
+      case 'success':
+         toast.success(message, {
+            style: {
+               fontSize: '16px',
+            },
+         })
 
-      break;
+         break
 
-    case 'error':
-      toast.error(message, {
-        style: {
-          fontSize: '16px',
-        },
-      });
-      break;
-  }
-};
+      case 'error':
+         toast.error(message, {
+            style: {
+               fontSize: '16px',
+            },
+         })
+         break
+   }
+}

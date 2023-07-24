@@ -1,3 +1,3 @@
-import SettingsLayout from './settings';
+import SettingsLayout from './settings'
 
-export { SettingsLayout };
+export { SettingsLayout }

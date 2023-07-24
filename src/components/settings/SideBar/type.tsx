@@ -1,3 +1,3 @@
 export type SidebarProps = {
-    handleSidebar: () => void;
+   handleSidebar: () => void
 }

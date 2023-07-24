@@ -1,2 +1,1 @@
-import Register from "./register";
-
+import Register from './register'
